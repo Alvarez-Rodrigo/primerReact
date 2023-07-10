@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+/* esilos de las card*/
+
+.cardVista{
+    width: 15px;
+    height: 30px;
+    margin: 2px;
+    border: 1px;
+    border-color:black;  
+}
+
+.img{
+    margin: 2px;
+}
+
+.producto{
+    margin: 2px;
+    text-align: center;
+    color:beige;
+    font-size: 1px;
+}
+
+.button{
+    margin: 1px 2px;
+    align-self: center;
+}
