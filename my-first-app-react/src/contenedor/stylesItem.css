@@ -6,11 +6,14 @@
 /* esilos de las card*/
 
 .cardVista{
-    width: 15px;
-    height: 30px;
-    margin: 2px;
-    border: 1px;
-    border-color:black;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 15px;
+    margin: 15px;
+    width: 300px;
 }
 
 .img{

@@ -29,12 +29,26 @@ code {
   padding: 0 10px;
   margin-left: 20px; 
 }
-a {
-  text-decoration: none;
-  color: black;
-  justify-content: center;
+
+.product{
+  font-size: 10px;
+  margin: 5px 5px 3px;
 }
 
-a:visited{
+.cartContain{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+footer{
+  background-color: rgb(150, 148, 148);
+}
+.footerP{
+  padding: 2px;
+  font-size: 8px;
+  text-align: center;
   color: black;
 }

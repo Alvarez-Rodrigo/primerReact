@@ -1,6 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import "./stylesItem.css"
 import Imagen from "../assent/images.png"
+import React, { useState } from 'react';
+
 
 
 //esta funcion suma los productos de cada cart
