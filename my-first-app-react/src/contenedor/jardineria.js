@@ -1,12 +1,14 @@
-import Container from 'react-bootstrap/Container';
-import {BrowserRouter, Route, Routers} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 
 
-function jardineria(){
+function Jardineria(){
     return <div>
-        <h1>hogarDetalle</h1>
+        <Link to="jardineria/1"></Link>
+        <Link to="jardineria/2"></Link>
+        <Link to="jardineria/3"></Link>
+        <Link to="jardineria/4"></Link>
     </div>
 }
 
-export default jardineria;
+export default Jardineria;

@@ -5,8 +5,6 @@ import "./stylesItem.css"
 //import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css";
 
 
-
-
 function NavBar() {
 const {userId} = useParams();
 useEffect(() => {
@@ -18,11 +16,11 @@ useEffect(() => {
 
   return (
     <div className="barra">
-      <ul>
-        <li><NavLink  className="superior" activeClassName= "active" to={"/"}>Home</NavLink></li>
-        <li><NavLink className="superior" activeClassName= "active" to={"/hogar"}>Hogar</NavLink></li>
-        <li><NavLink className="superior" activeClassName= "active" to={"/jardineria"}>Jardineria</NavLink></li>
-      </ul>
+      
+      <NavLink  className="superior" activeClassName= "active" to={"/home"}>Home</NavLink>
+      <NavLink className="superior" activeClassName= "active" to={"/hogar"}>Hogar</NavLink>
+      <NavLink className="superior" activeClassName= "active" to={"/jardineria"}>Jardineria</NavLink>
+      
   </div>
       
   );

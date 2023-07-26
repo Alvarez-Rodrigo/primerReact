@@ -1,7 +1,5 @@
-function home({ title }) {
-    return (
-      <div>{title}</div>
-      )
-  }
-  
-  export default home;
+function home (){
+    return;
+}
+
+export default home;
