@@ -16,9 +16,9 @@ function App() {
   }
   return (
     <div className="App">
-     <NavBar/>
-
+     
      <BrowserRouter>
+     <NavBar/>
       <Routes>
         <Route exact path='/' element = {<home title="Aca arranca todo"/>}></Route>
         <Route exact path='/hogar' element = {<hogar title="Holaaaaaaa"/>}>hola</Route>
@@ -27,17 +27,11 @@ function App() {
         <Route exact path='/jardineria/:id' element = {<jardineriaDetalle/>}></Route>
         
       </Routes>
-     </BrowserRouter>
 
-     <div className='cartContain'>
-        <ItemContainer titulo="Producto" onClick={handleChangeCart}/>
-        <ItemContainer titulo="Producto" onClick={handleChangeCart}/>
-        <ItemContainer titulo="Producto" onClick={handleChangeCart}/>
-        <ItemContainer titulo="Producto" onClick={handleChangeCart}/>
-     </div>
      <footer>
       <h2 className='footerP'>Todos los derechos reservados desde 1997 ©</h2>
      </footer>
+     </BrowserRouter>
     </div>
   );
 }
