@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import {BrowserRouter, Routers ,Route } from "react-router-dom"
-import NavBar from "./contenedor/menu.js"
+import {BrowserRouter, Routes ,Route } from "react-router-dom";
+import home from "./contenedor/home.js";
+import NavBar from "./contenedor/menu.js";
 import ItemContainer from "./contenedor/contenedorItem";
 
 
@@ -18,14 +19,14 @@ function App() {
      <NavBar/>
 
      <BrowserRouter>
-      <Routers>
-        <Route exact path='/' element = {<home title="Inicio"/>}></Route>
-        <Route exact path='/hogar' element = {<hogar/>}></Route>
+      <Routes>
+        <Route exact path='/' element = {<home title="Aca arranca todo"/>}></Route>
+        <Route exact path='/hogar' element = {<hogar title="Holaaaaaaa"/>}>hola</Route>
         <Route exact path='/hogar/:id' element = {<hogarDetalle/>}></Route>
         <Route exact path='/jardineria' element = {<jardineria/>}></Route>
         <Route exact path='/jardineria/:id' element = {<jardineriaDetalle/>}></Route>
         
-      </Routers>
+      </Routes>
      </BrowserRouter>
 
      <div className='cartContain'>

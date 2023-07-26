@@ -3,7 +3,9 @@ import {BrowserRouter, Route, Routers} from "react-router-dom"
 
 
 function contacto(){
-    return <div></div>
+    return <div>
+        
+    </div>
 }
 
 export default contacto;

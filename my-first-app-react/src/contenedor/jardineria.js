@@ -4,7 +4,9 @@ import {BrowserRouter, Route, Routers} from "react-router-dom"
 
 
 function jardineria(){
-    return <div></div>
+    return <div>
+        <h1>hogarDetalle</h1>
+    </div>
 }
 
 export default jardineria;
