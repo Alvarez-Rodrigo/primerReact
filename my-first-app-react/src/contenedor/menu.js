@@ -1,21 +1,20 @@
+import React from "react";
+import { NavLink } from "react-router-dom"
+import "./stylesItem.css"
+import CartWidget from "./CartWidget"
+import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css";
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+
+
 
 function NavBar() {
   return (
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#Inicio">Inicio</Nav.Link>
-            <Nav.Link href="#Hogar">Hogar</Nav.Link>
-            <Nav.Link href="#Jardineria">Jardineria</Nav.Link>
-            <Nav.Link href="#Contacto">Contacto</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+    <div className="barra">
+      <NavLink  to={"/"} className="superior" activeClassName= "active">Home</NavLink>
+      <NavLink className="superior" activeClassName= "active" to={"/hogar"}>Hogar</NavLink>
+      <NavLink className="superior" activeClassName= "active" to={"/jardineria"}>Jardineria</NavLink>
+      <NavLink className="superior" >CartWidget</NavLink>
+  </div>
       
   );
 }
