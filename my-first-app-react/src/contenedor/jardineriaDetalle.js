@@ -7,7 +7,8 @@ function JardineriaDetalle(){
 
 
     return <div className="cardVista">
-        <div className="producto"> Eligio el producto{id} </div>
+        <div> Jardineria </div>
+        <div > Eligio el producto{id} </div>
     </div>
 }
 

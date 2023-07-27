@@ -7,8 +7,9 @@ function HogarDetalle(){
 
 
     return <div className="cardVista">
-        <div className="producto"> Eligio el producto{id} </div>
-    </div>
+    <div> Hogar </div>
+    <div > Eligio el producto{id} </div>
+</div>
 }
 
 export default HogarDetalle;

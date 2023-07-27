@@ -6,7 +6,7 @@ import HogarDetalle from './contenedor/hogarDetalle.js'
 import Jardineria from './contenedor/jardineria.js';
 import JardineriaDetalle from './contenedor/jardineriaDetalle.js';
 import NavBar from "./contenedor/menu.js";
-import ItemContainer from "./contenedor/contenedorItem";
+
 
 
 import "./App.css"
@@ -25,7 +25,7 @@ function App() {
      <NavBar/>
       <Routes>
         <Route exact path='/home' element = {< Home title=""/>}></Route>
-        <Route exact path='/hogar' element = {< Hogar title="Holaaaaaaa"/>}>hola</Route>
+        <Route exact path='/hogar' element = {< Hogar />}></Route>
         <Route exact path='/hogar/:id' element = {< HogarDetalle />}></Route>
         <Route exact path='/Jardineria' element = {< Jardineria />}></Route>
         <Route exact path='/Jardineria/:id' element = {< JardineriaDetalle />}></Route>
