@@ -20,7 +20,7 @@ useEffect(() => {
       <NavLink  className="superior" activeClassName= "active" to={"/"}>Home</NavLink>
       <NavLink className="superior" activeClassName= "active" to={"/categoria/hogar"}>Hogar</NavLink>
       <NavLink className="superior" activeClassName= "active" to={"/categoria/jardineria"}>Jardineria</NavLink>
-      <CartWidget/>
+      <NavLink ><CartWidget/></NavLink>
   </div>
       
   );
