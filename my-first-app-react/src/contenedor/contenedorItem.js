@@ -1,27 +1,33 @@
-import Button from 'react-bootstrap/Button';
+import React, {useEffect, useState} from 'react';
 import "./stylesItem.css"
-import Imagen from "../assent/images.png"
-import React, { useState } from 'react';
+import ItemList from './itemList/itemList';
+import { getProducto } from '../mock/data';
+import { useParams } from 'react-router-dom';
+
+
 
 
 
 //esta funcion suma los productos de cada cart
-function ItemContainer ({titulo, onClick}) {
+function ItemContainer (){
+    const [productos, setProductos] = useState([])
+    const {categoriaId}= useParams()
    
-    const [cantidad, setCantidad] = useState(0);  
+    useEffect(()=>{
+        getProducto()
+        .then((res)=>{
+            if(categoriaId){
+                setProductos(res.filter((item)=> item.categoria === categoriaId))
+            }else{setProductos(res)}
+        })
+        .catch((error)=>console.log(error))
+    },[categoriaId])
 
-    function handleChangeCart(){      
-    setCantidad(cantidad + 1);
-    onClick();    
-    }
 
-    return (    
-    <><div className='cardVista'>
-        <img className= "img" src={Imagen} alt= "imagen Ref"/>
-        <h1 className='producto'>{titulo}</h1>
-        <h2 className='producto'>Cantidad de productos {cantidad}</h2>        
-        <Button className= 'button' variant="dark" onClick={handleChangeCart}>Agregar al carrito</Button>
-    </div></>
+    return(
+        <div>
+            <ItemList productos= {productos} />
+        </div>
     )
 }
 
