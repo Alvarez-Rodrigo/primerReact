@@ -18,8 +18,7 @@ useEffect(() => {
     <div className="barra">
       
       <NavLink  className="superior" activeClassName= "active" to={"/"}>Home</NavLink>
-      <NavLink className="superior" activeClassName= "active" to={"/categoria/hogar"}>Hogar</NavLink>
-      <NavLink className="superior" activeClassName= "active" to={"/categoria/jardineria"}>Jardineria</NavLink>
+      <NavLink className="superior" activeClassName= "active" to={"/item/:id"}>Jardineria</NavLink>
       <NavLink ><CartWidget/></NavLink>
   </div>
       

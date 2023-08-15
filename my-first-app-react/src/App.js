@@ -15,19 +15,21 @@ function App() {
   return (
     <div className="App">
      
-     <BrowserRouter>
-     <NavBar/>
-      <Routes>
-        <Route path='/' element={<ItemContainer greeting = "Bienvenidos!"/>} ></Route>
-        <Route path='/categoria/:categoriaId' element={<ItemContainer greeting = ""/>} ></Route>
-        <Route path='/item/:id' element={<ItemDetailContainer/>} ></Route>
-      </Routes> 
-      
-      
-     <footer>
-      <h2 className='footerP'>Todos los derechos reservados desde 1997 ©</h2>
-     </footer>
-     </BrowserRouter>
+    <BrowserRouter>
+      <CartProvider>
+        <NavBar/>
+          <Routes>
+            <Route path='/' element={<ItemContainer greeting = "Bienvenidos!"/>} ></Route>
+            <Route path='/categoria/:categoriaId' element={<ItemContainer greeting = ""/>} ></Route>
+            <Route path='/item/:id' element={<ItemDetailContainer/>} ></Route>
+          </Routes> 
+          
+          
+        <footer>
+          <h2 className='footerP'>Todos los derechos reservados desde 1997 ©</h2>
+        </footer>
+      </CartProvider>
+    </BrowserRouter>
     </div>
   );
 }

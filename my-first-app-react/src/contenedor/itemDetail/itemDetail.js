@@ -1,11 +1,20 @@
 import React from "react";
+import useCart from "../../context/cart/useCart";
 
-const ItemDetail = ({producto}) =>{
+const ItemDetail = ({items}) =>{
+
+    const {agregarProducto} = useCart();
+
+    function handleComprar(){
+        agregarProducto(items);
+    }
+
     return(
         <div>
-            <h3>Detalle del producto:{producto.nombre}</h3>
-            <img src={producto.img}/>
-            <p>{producto.descripcion}</p>
+            <h3>Detalle del producto:{items.nombre}</h3>
+            <img src={items.img}/>
+            <p>{items.descripcion}</p>
+            <button onClick={handleComprar}> Comprar </button>
         </div>
     )
 }

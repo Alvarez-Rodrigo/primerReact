@@ -5,9 +5,6 @@ import { getProducto } from '../mock/data';
 import { useParams } from 'react-router-dom';
 
 
-
-
-
 //esta funcion suma los productos de cada cart
 function ItemContainer (){
     const [productos, setProductos] = useState([])
