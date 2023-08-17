@@ -1,46 +1,41 @@
-import React, {useEffect, useState} from "react";
-import { getItem } from "../../mock/data";
-import ItemDetail from "../itemDetail/itemDetail";
-import { useParams } from "react-router-dom";
-import {getFirestore, doc, getDoc} from "../../firebase/firebase";
+import { useEffect, useState } from "react"
+import ItemDetail from "../itemDetail/itemDetail"
+import { useParams } from "react-router-dom"
+import data from "../firebase/firebase";
+import { doc, getDoc } from '../firebase/firebase';
 
+const ItemDetailContainer = () => {
+    const [producto, setProducto] = useState({})
+    const [loading, setLoading]= useState([false])
+    const { id }=useParams()
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const productDoc = doc(data, "items", id);
+                const productSnapshot = await getDoc(productDoc);
 
+                if (productSnapshot.exists()) {
+                    setProducto({ ...productSnapshot.data(), id: productSnapshot.id });
+                } else {
+                    console.log("no tiene producto!");
+                }
+            } catch (error) {
+                console.log("Error en el documento:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-function ItemDetailContainer(){
+        fetchData();
+    }, [id]);
+    if(loading)return<h2>cargando</h2>
+    return (
+            <div className="d-flex justify-content-center">
+                <ItemDetail producto={producto}/>
+            </div>
 
-    const [data, setData] = useState ({});
-    const {datelleId} = useParams();
-
-    useEffect(() =>{
-        const querydb = getFirestore();
-        const queryDoc = doc (querydb, 'items', datelleId);
-        getDoc(queryDoc)
-        .then(res => setData({id: res.id, ...res.data()})) 
-    }, [datelleId])
-
-
-    return(
-        <div>
-            <ItemDetail data ={data} />
-        </div>
     )
 }
-/*const ItemDetailContainer = ( ) =>{
 
-    const[producto, setProducto] = useState({})
-    const {id} = useParams()
-    useEffect (()=>{
-        getItem(id)
-        .then((res) => setProducto(res))
-        .catch((error) => console.log(error))
-    },[])
-
-    return(
-        <div>
-            <ItemDetail producto={producto} />
-        </div>
-    )
-}*/
-
-
-export default ItemDetailContainer;
+export default ItemDetailContainer

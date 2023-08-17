@@ -1,32 +1,52 @@
-import React, {useEffect, useState} from 'react';
-import "./stylesItem.css"
-import ItemList from './itemList/itemList';
-import { getProducto } from '../mock/data';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import ItemList from "../contenedor/item/item";
+import { useParams } from "react-router-dom";
+import data from "../contenedor/firebase/firebase";
+import { collection, getDocs, query, where } from 'firebase/firebase';
+
+const ContenedorItem = ({greeting}) => {
+    const [productos, setProductos]= useState([]);
+    const [Cargando, setCargando]= useState([false])
+    const {categoryId} = useParams()
 
 
-//esta funcion suma los productos de cada cart
-function ItemContainer (){
-    const [productos, setProductos] = useState([])
-    const {categoriaId}= useParams()
-   
-    useEffect(()=>{
-        getProducto()
-        .then((res)=>{
-            if(categoriaId){
-                setProductos(res.filter((item)=> item.categoria === categoriaId))
-            }else{setProductos(res)}
-        })
-        .catch((error)=>console.log(error))
-    },[categoriaId])
+    useEffect(() => {
+        const fetchData = async () => {
+            const productsCollection = collection(data, "items"); 
+            let coleccion;
 
+            if (categoryId) {
+                coleccion = query(productsCollection, where("category", "==", categoryId));
+            } else {
+                coleccion = productsCollection;
+            }
 
-    return(
+            try {
+                const querySnapshot = await getDocs(coleccion);
+                const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+                setProductos(data);
+            } catch (error) {
+                console.log("Error de los documentos: ", error);
+            } finally {
+                setCargando(false);
+            }
+        };
+
+        fetchData();
+    }, [categoryId]);
+
+    if(Cargando)return<h2>Cargando</h2>
+    return (
         <div>
-            <ItemList productos= {productos} />
+            
+                <div className="itemListContainer">
+                    <h2>{greeting} <p>{categoryId && categoryId}</p></h2>
+                    <ItemList productos={productos}/>
+                </div>
+            
         </div>
+        
     )
 }
 
-//export
-export default ItemContainer;
+export default ContenedorItem;

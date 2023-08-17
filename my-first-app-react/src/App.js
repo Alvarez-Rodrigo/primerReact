@@ -2,9 +2,9 @@ import { useState } from 'react';
 import {BrowserRouter, Routes ,Route } from "react-router-dom";
 import NavBar from "./contenedor/menu.js";
 import ItemContainer from "./contenedor/contenedorItem.js"
-import ItemDetailContainer from "./contenedor/itemDetailContainer/itemDetailContainer.js"
+import ItemDetailContainer from "./contenedor/itemDetailContainer"
 import "./App.css"
-
+import CartProvider from './contenedor/cartContext/cartContext.js';
 //funcion principal
 
 function App() {
