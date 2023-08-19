@@ -1,52 +1,40 @@
 import { useEffect, useState } from "react";
-import ItemList from "../contenedor/item/item";
+import ItemList from "../contenedor/itemList/itemList";
 import { useParams } from "react-router-dom";
-import data from "../contenedor/firebase/firebase";
-import { collection, getDocs, query, where } from 'firebase/firebase';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../contenedor/firebase/firebase";
 
-const ContenedorItem = ({greeting}) => {
-    const [productos, setProductos]= useState([]);
-    const [Cargando, setCargando]= useState([false])
-    const {categoryId} = useParams()
+const ContenedorItem = () => {
 
+    const [productos, setProductos] = useState([]);
+
+    const [titulo, setTitulo] = useState("Productos");
+
+    const categoria = useParams().categoria;
 
     useEffect(() => {
-        const fetchData = async () => {
-            const productsCollection = collection(data, "items"); 
-            let coleccion;
 
-            if (categoryId) {
-                coleccion = query(productsCollection, where("category", "==", categoryId));
-            } else {
-                coleccion = productsCollection;
-            }
+      const productosRef = collection(db, "productos");
+      const q = categoria ? query(productosRef, where("categoria", "==", categoria)) : productosRef;
 
-            try {
-                const querySnapshot = await getDocs(coleccion);
-                const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                setProductos(data);
-            } catch (error) {
-                console.log("Error de los documentos: ", error);
-            } finally {
-                setCargando(false);
-            }
-        };
+      getDocs(q)
+        .then((resp) => {
 
-        fetchData();
-    }, [categoryId]);
-
-    if(Cargando)return<h2>Cargando</h2>
-    return (
-        <div>
-            
-                <div className="itemListContainer">
-                    <h2>{greeting} <p>{categoryId && categoryId}</p></h2>
-                    <ItemList productos={productos}/>
-                </div>
-            
-        </div>
+          setProductos(
+            resp.docs.map((doc) => {
+              return { ...doc.data(), id: doc.id }
+            })
+          )
+        })
         
-    )
+    }, [categoria])
+    
+    
+  return (
+    <div>
+        <ItemList productos={productos} titulo={titulo} />
+    </div>
+  )
 }
 
-export default ContenedorItem;
+export default ContenedorItem

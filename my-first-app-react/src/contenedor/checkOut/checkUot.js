@@ -1,28 +1,59 @@
-import { useCartContext } from "../context/context";
+import React, { useContext, useState } from 'react'
+import { CartContext } from '../context/context';
+import { useForm } from 'react-router-dom';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from 'firebase/firebase';
 
-const CheckOut = ({order}) => {
-    const {removeList} = useCartContext()
-    return (
-        <div className="order-summary">
-            <h2>Resumen de Compra</h2>
-            <h3>Información del Comprador:</h3>
-            <p><strong>Nombre:</strong> {order.buyer.name}</p>
-            <p><strong>Email:</strong> {order.buyer.email}</p>
-            <p><strong>Teléfono:</strong> {order.buyer.phone}</p>
+const Checkout = () => {
 
-            <h3>Productos:</h3>
-            <ul>
-                {order.items.map(item => (
-                    <li key={item.id}>
-                        <strong>{item.name}</strong> - ${item.price} x {item.quantity} = ${item.price * item.quantity}
-                    </li>
-                ))}
-            </ul>
-            
-            <h3>Total: ${order.total}</h3>
-            {removeList()}
-        </div>
-    );
+    
+    const [pedidoId, setPedidoId] = useState("");
+
+    const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext);
+
+    const { register, handleSubmit } = useForm();
+
+    const comprar = (data) => {
+        const pedido = {
+            cliente: data,
+            productos: carrito,
+            total: precioTotal()
+        }
+        console.log(pedido);
+
+        const pedidosRef = collection(db, "pedidos");
+
+        addDoc(pedidosRef, pedido)
+            .then((doc) => {
+                setPedidoId(doc.id);
+                vaciarCarrito();
+            })
+
+    }
+
+    if (pedidoId) {
+        return (
+            <div className="container">
+                <h1 className="main-title">Muchas gracias por tu compra</h1>
+                <p>Tu número de pedido es: {pedidoId}</p>
+            </div>
+        )
+    }
+
+  return (
+    <div className="container">
+        <h1 className="main-title">Finalizar compra</h1>
+        <form className="formulario" onSubmit={handleSubmit(comprar)}>
+
+            <input type="text" placeholder="Ingresá tu nombre" {...register("nombre")} />
+            <input type="email" placeholder="Ingresá tu e-mail" {...register("email")} />
+            <input type="phone" placeholder="Ingresá tu teléfono" {...register("telefono")} />
+
+            <button className="enviar" type="submit">Comprar</button>
+
+        </form>
+    </div>
+  )
 }
 
-export default CheckOut
+export default Checkout

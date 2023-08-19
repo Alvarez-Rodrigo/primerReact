@@ -1,22 +1,19 @@
-import React from "react";
-import {Button, Card} from "react-bootstrap";
-import { Link } from "react-router-dom";
-const Item = ({prod}) => {
-    return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={prod.img} />
-      <Card.Body>
-        <Card.Title>{prod.nombre}</Card.Title>
-        <Card.Text>
-          {prod.descripcion}
-        </Card.Text>
-        <Card.Text>
-          ${prod.precio}
-        </Card.Text>
-        <Button as={Link} to={`/item/${prod.id}`} variant="primary">Info</Button>
-      </Card.Body>
-    </Card>
-    )
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { toCapital } from '../helps/toCapital'
+
+const Item = ( {producto} ) => {
+  return (
+    <div className="producto">
+        <img src={producto.imagen} alt={producto.titulo} />
+        <div>
+            <h4>{producto.titulo}</h4>
+            <p>Precio: ${producto.precio}</p>
+            <p>Categoría: {toCapital(producto.categoria)}</p>
+            <Link className="ver-mas" to={`/item/${producto.id}`}>Ver más</Link>
+        </div>
+    </div>
+  )
 }
 
-export default Item;
+export default Item

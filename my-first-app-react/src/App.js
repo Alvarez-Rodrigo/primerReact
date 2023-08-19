@@ -1,17 +1,17 @@
-import { useState } from 'react';
+
 import {BrowserRouter, Routes ,Route } from "react-router-dom";
 import NavBar from "./contenedor/menu.js";
-import ItemContainer from "./contenedor/contenedorItem.js"
-import ItemDetailContainer from "./contenedor/itemDetailContainer"
+import ItemContainer from "./contenedor/contenedorItem"
+import ItemDetailContainer from "./contenedor/itemDetailContainer/itemDetailContainer"
 import "./App.css"
-import CartProvider from './contenedor/cartContext/cartContext.js';
+import CartProvider from "./contenedor/cartContext/cartContext.js"
+
+import Checkout from "./contenedor/checkOut/checkUot.js"
 //funcion principal
 
 function App() {
-  const [shoppingCart, setShoppingCart] = useState(0);
-  const handleChangeCart = () => {
-    setShoppingCart(shoppingCart + 1);    
-  }
+  //CartProvider
+  
   return (
     <div className="App">
      
@@ -19,9 +19,11 @@ function App() {
       <CartProvider>
         <NavBar/>
           <Routes>
-            <Route path='/' element={<ItemContainer greeting = "Bienvenidos!"/>} ></Route>
-            <Route path='/categoria/:categoriaId' element={<ItemContainer greeting = ""/>} ></Route>
-            <Route path='/item/:id' element={<ItemDetailContainer/>} ></Route>
+          <Route path="/" element={<ItemContainer />} />
+            <Route path="/item/:id" element={<ItemDetailContainer />}/>
+            <Route path="/productos" element={<ItemContainer />} />
+            <Route path="/productos/:categoria" element={<ItemContainer />} />
+            <Route path="/checkout" element={<Checkout />}/>
           </Routes> 
           
           
